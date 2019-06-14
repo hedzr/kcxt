@@ -62,6 +62,20 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-28
+    - extra
+    - addon
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+    # Google Play Services
+    - extra-google-google_play_services
+    # Support library
+    - extra-android-support
+
+    - addon-google_apis-google-$ANDROID_API_LEVEL
+    - addon-google_apis-google-$EMULATOR_API_LEVEL
+    - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
+    - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
