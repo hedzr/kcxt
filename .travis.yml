@@ -27,9 +27,7 @@ env:
 #  - echo no | android create avd --force -n test -t android-29 --abi armeabi-v7a
 before_script:
   # Create and start emulator.
-  - which android
-  - which avdmanager || true
-  - which sdkmanager
+  - which android && which sdkmanager && which avdmanager || true
   - echo no | android create avd --force -n test -t "android-$ANDROID_EMULATOR_LEVEL" --abi $ANDROID_ABI --tag $ANDROID_TAG
   #- emulator -avd test -no-skin -no-audio -no-window &
   #- android-wait-for-emulator
@@ -39,8 +37,7 @@ before_script:
 # https://stackoverflow.com/questions/52274229/travis-ci-android-28-licenses-have-not-been-accepted
 before_install:
   - yes | sdkmanager "platforms;android-28"
-  - echo $ANDROID_TARGET
-  - echo $ANDROID_ABI
+  - echo "$ANDROID_TARGET $ANDROID_ABI"
   - adb logcat > logcat.log &
 
 script:
