@@ -20,3 +20,12 @@ class ExampleInstrumentedTest {
         assertEquals("com.obsez.android.libs.kcxt.demo.test", appContext.packageName)
     }
 }
+
+/*
+export ANDROID_API_LEVEL=29
+export ANDROID_EMULATOR_LEVEL=29
+export ANDROID_BUILD_TOOLS_VERSION=29.0.1
+export ANDROID_ABI=x86
+export ANDROID_TAG=google_apis_playstore
+export ADB_INSTALL_TIMEOUT=50
+*/
