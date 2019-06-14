@@ -1,6 +1,7 @@
 # kcxt
 
-[![Release](https://jitpack.io/v/hedzr/kcxt.svg)](https://jitpack.io/#hedzr/kcxt)
+[![Build Status](https://travis-ci.com/hedzr/kcxt.svg?branch=master)](https://travis-ci.com/hedzr/kcxt)
+[![JitPack Release](https://jitpack.io/v/hedzr/kcxt.svg)](https://jitpack.io/#hedzr/kcxt)
 
 `kcxt` is a kotlin context-awareness library.
 
@@ -17,7 +18,8 @@ import com.obsez.android.libs.kcxt.currentActivity
 
 ```gradle
 dependencies {
-	implementation 'com.github.hedzr:kcxt:v1.3.12'
+	// implementation "com.github.hedzr:kcxt:v1.3.12"
+	implementation "com.github.hedzr:kcxt:$kcxt_version"
 }
 ```
 
