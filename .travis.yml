@@ -16,27 +16,24 @@ env:
     - ANDROID_API_LEVEL=28
     - ANDROID_EMULATOR_LEVEL=28
     - ANDROID_BUILD_TOOLS_VERSION=29.0.1
-    #- ANDROID_ABI=armeabi-v7a
+    - ANDROID_ABI=armeabi-v7a
     #- ANDROID_TAG=google_apis
-    - ANDROID_ABI=x86
-    - ANDROID_TAG=google_apis_playstore
+    #- ANDROID_ABI=x86
+    - ANDROID_TAG=google_apis  # _playstore
     - ADB_INSTALL_TIMEOUT=10  # wait up to 10 minutes for adb to connect to emulator (2 minutes by default)
 
 ## https://stackoverflow.com/questions/39411060/travis-ci-android-build-failed-no-connected-devices-error
 #before_script:
 #  - echo no | android create avd --force -n test -t android-29 --abi armeabi-v7a
-#  - emulator -avd test -no-skin -no-audio -no-window &
-#  - android-wait-for-emulator
-#  - adb shell input keyevent 82 &
 before_script:
   # Create and start emulator.
   - which android
   - which avdmanager || true
   - which sdkmanager
   - echo no | android create avd --force -n test -t "android-$ANDROID_EMULATOR_LEVEL" --abi $ANDROID_ABI --tag $ANDROID_TAG
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+  #- emulator -avd test -no-skin -no-audio -no-window &
+  #- android-wait-for-emulator
+  #- adb shell input keyevent 82 &
 
 # https://stackoverflow.com/questions/50027805/travis-ci-build-error-android-app
 # https://stackoverflow.com/questions/52274229/travis-ci-android-28-licenses-have-not-been-accepted
