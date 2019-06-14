@@ -27,8 +27,10 @@ env:
 #  - echo no | android create avd --force -n test -t android-29 --abi armeabi-v7a
 before_script:
   # Create and start emulator.
-  - which android && which sdkmanager && which avdmanager || true
-  - echo no | android create avd --force -n test -t "android-$ANDROID_EMULATOR_LEVEL" --abi $ANDROID_ABI --tag $ANDROID_TAG
+#- which android && which sdkmanager && which avdmanager || true
+#- /usr/local/android-sdk/tools/android
+#- /usr/local/android-sdk/tools/bin/sdkmanager
+#- echo no | android create avd --force -n test -t "android-$ANDROID_EMULATOR_LEVEL" --abi $ANDROID_ABI --tag $ANDROID_TAG
   #- emulator -avd test -no-skin -no-audio -no-window &
   #- android-wait-for-emulator
   #- adb shell input keyevent 82 &
@@ -38,7 +40,7 @@ before_script:
 before_install:
   #- yes | sdkmanager "platforms;android-28"
   - echo "$ANDROID_TARGET $ANDROID_ABI"
-  - adb logcat > logcat.log &
+  #- adb logcat > logcat.log &
 
 script:
   - ./gradlew build
@@ -51,6 +53,7 @@ android:
     - tools # https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - platform-tools
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION # get the build tools version to build the project
+    - build-tools-28.0.3
 
     # The BuildTools version used by your project
     #- build-tools-28.0.2
@@ -93,4 +96,4 @@ android:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
-    - '.+'
+    #- '.+'
