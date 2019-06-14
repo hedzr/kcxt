@@ -13,19 +13,21 @@ cache:
 
 env:
   global:
-    - ANDROID_API_LEVEL=25
-    - ANDROID_EMULATOR_LEVEL=25
-    - ANDROID_BUILD_TOOLS_VERSION=28.0.0
-    - ANDROID_ABI=armeabi-v7a
-    - ANDROID_TAG=google_apis
-    - ADB_INSTALL_TIMEOUT=20
+    - ANDROID_API_LEVEL=29
+    - ANDROID_EMULATOR_LEVEL=29
+    - ANDROID_BUILD_TOOLS_VERSION=29.0.1
+    #- ANDROID_ABI=armeabi-v7a
+    #- ANDROID_TAG=google_apis
+    - ANDROID_ABI=x86
+    - ANDROID_TAG=google_apis_playstore
+    - ADB_INSTALL_TIMEOUT=50
 
 ## https://stackoverflow.com/questions/39411060/travis-ci-android-build-failed-no-connected-devices-error
 #before_script:
 #  - echo no | android create avd --force -n test -t android-29 --abi armeabi-v7a
 #  - emulator -avd test -no-skin -no-audio -no-window &
 #  - android-wait-for-emulator
-#  - adb shell input keyevent 82 &  google_apis_playstore google_apis
+#  - adb shell input keyevent 82 &
 before_script:
   # Create and start emulator.
   - echo no | android create avd --force -n test -t "android-$ANDROID_EMULATOR_LEVEL" --abi $ANDROID_ABI --tag $ANDROID_TAG
