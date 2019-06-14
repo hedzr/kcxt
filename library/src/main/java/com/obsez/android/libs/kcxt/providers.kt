@@ -11,7 +11,7 @@ import java.lang.ref.WeakReference
 import java.util.concurrent.ConcurrentLinkedQueue
 
 
-abstract class ProviderInitializer : ContentProvider() {
+internal abstract class ProviderInitializer : ContentProvider() {
     
     override fun onCreate(): Boolean {
         val listener = initialize()
@@ -54,7 +54,7 @@ abstract class ProviderInitializer : ContentProvider() {
 }
 
 
-abstract class EmptyProvider : ContentProvider() {
+internal abstract class EmptyProvider : ContentProvider() {
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -78,7 +78,7 @@ abstract class EmptyProvider : ContentProvider() {
 
 
 @Suppress("unused")
-object ApplicationProvider {
+internal object ApplicationProvider {
     internal val applicationListeners = ConcurrentLinkedQueue<(Application) -> Unit>()
     
     @JvmStatic
@@ -98,7 +98,7 @@ object ApplicationProvider {
         }
 }
 
-class AppContextProvider : EmptyProvider() {
+internal class AppContextProvider : EmptyProvider() {
     override fun onCreate(): Boolean {
         val ctx = context
         if (ctx is Application) {
@@ -109,24 +109,24 @@ class AppContextProvider : EmptyProvider() {
 }
 
 
-interface ActivityCreatedListener {
+internal interface ActivityCreatedListener {
     fun onActivityCreated(activity: Activity)
 }
 
-interface ActivityResumedListener {
+internal interface ActivityResumedListener {
     fun onActivityResumed(activity: Activity)
 }
 
-interface ActivityPausedListener {
+internal interface ActivityPausedListener {
     fun onActivityPaused(activity: Activity)
 }
 
-interface ActivityDestroyedListener {
+internal interface ActivityDestroyedListener {
     fun onActivityDestroyed(activity: Activity)
 }
 
 @Suppress("ObjectPropertyName", "MemberVisibilityCanBePrivate", "unused")
-object ActivityProvider {
+internal object ActivityProvider {
     private val activityCreatedListeners = ConcurrentLinkedQueue<ActivityCreatedListener>()
     private val activityResumedListeners = ConcurrentLinkedQueue<ActivityResumedListener>()
     private val activityPausedListeners = ConcurrentLinkedQueue<ActivityPausedListener>()
@@ -209,7 +209,7 @@ object ActivityProvider {
 }
 
 
-class LastActivityProvider : EmptyProvider() {
+internal class LastActivityProvider : EmptyProvider() {
     override fun onCreate(): Boolean {
         ApplicationProvider.listen { application ->
             application.registerActivityLifecycleCallbacks(object :

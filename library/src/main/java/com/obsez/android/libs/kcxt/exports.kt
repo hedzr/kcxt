@@ -17,7 +17,7 @@ val appGlobal: Application?
         ?: initAndGetAppCtxWithReflection()
 
 @Suppress("unused")
-inline val currentActivity: Activity?
+val currentActivity: Activity?
     get() = ActivityProvider.currentActivity
 
 
