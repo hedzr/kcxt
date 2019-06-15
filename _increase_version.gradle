@@ -14,13 +14,19 @@
  * And sync the whole project right now.
  * A new file `version.properties` will be created if not exists.
  *
- * Once synchronized, build number of VERSION_CODE would be increased. Sample of `version.properties`:
+ * Once synchronized, build number of VERSION_CODE would be increased. A sample of `version.properties`:
  *
  * ```properties
  * VERSION_NAME=1.3.12
  * VERSION_CODE=1031200023
  * ```
  *
+ * Version Format: `major.minor.patch.build`
+ *
+ * - Increases major number: `./gradlew incVersionsMajor`
+ * - Increases minor number: `./gradlew incVersionsMinor`
+ * - Increases release/patch number: `./gradlew incVersionsRelease`
+ * - Increases build number: `./gradlew incVersions`
  *
  * Bonus
  * -----------
@@ -138,6 +144,12 @@ task('incVersionsRelease') {
 task('incVersionsMinor') {
     doLast {
         incVersionCore(10000000, true)
+    }
+}
+
+task('incVersionsMajor') {
+    doLast {
+        incVersionCore(1000000000, true)
     }
 }
 
