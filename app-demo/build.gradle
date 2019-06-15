@@ -3,29 +3,30 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 
-def VERSION_NAME = project.VERSION_NAME
-def VERSION_CODE = Integer.parseInt(project.VERSION_CODE)
-
-def ANDROID_COMPILE_SDK_VERSION = Integer.parseInt(project.ANDROID_COMPILE_SDK_VERSION)
-def ANDROID_TARGET_SDK_VERSION = Integer.parseInt(project.ANDROID_TARGET_SDK_VERSION)
-//def ANDROID_BUILD_TOOLS_VERSION = project.ANDROID_BUILD_TOOLS_VERSION
-def ANDROID_MIN_SDK_VERSION = Integer.parseInt(project.ANDROID_MIN_SDK_VERSION)
-
-def JAVA_COMPATIBILITY = JavaVersion.valueOf(project.JAVA_COMPATIBILITY)
+apply from: rootProject.file('_increase_version.gradle').path
+static def buildTime() { return new Date().format("yyyy-MM-dd HH:mm:ss.SSSSZ", TimeZone.getTimeZone("UTC")) }
+static def buildTimeSafe() { return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC")) }
+def getGitVersion() { return 'git rev-parse HEAD'.execute([], project.rootDir).text.trim() }
+def lite() { return project.hasProperty('CODE_LITE') ? project.CODE_LITE : 'false' }
 
 
 android {
-    compileSdkVersion ANDROID_COMPILE_SDK_VERSION
-    //buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion Integer.parseInt(project.ANDROID_COMPILE_SDK_VERSION)
+    //buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
 
     defaultConfig {
         applicationId "com.obsez.android.libs.kcxt_demo"
-        minSdkVersion ANDROID_MIN_SDK_VERSION
-        targetSdkVersion ANDROID_TARGET_SDK_VERSION
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        minSdkVersion Integer.parseInt(project.ANDROID_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_NAME
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "GIT_SHA", "\"${getGitVersion()}\""
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime()}\""
+        buildConfigField "String", "CODE_NAME", "\"${project.CODE_NAME}\""
+        buildConfigField "String", "CODE_LITE", "\"${lite()}\""
     }
 
     buildTypes {
@@ -36,8 +37,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JAVA_COMPATIBILITY
-        targetCompatibility JAVA_COMPATIBILITY
+        sourceCompatibility JavaVersion.valueOf(project.JAVA_COMPATIBILITY)
+        targetCompatibility JavaVersion.valueOf(project.JAVA_COMPATIBILITY)
     }
     lintOptions {
         lintConfig rootProject.file('lint.xml')
