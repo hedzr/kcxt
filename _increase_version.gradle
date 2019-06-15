@@ -1,7 +1,7 @@
 /**
  * _increase_version.gradle
  *   Author: Hedzr Yeh
- *  Version: v1.2.1
+ *  Version: v1.2.2
  *
  * Usage
  * ------------
@@ -52,6 +52,12 @@
  * ```
  *
  */
+
+if (!project.hasProperty("VERSION_CODE")) {
+    project.ext.set('VERSION_CODE', '1000100003')
+    project.ext.set('VERSION_NAME', '1.0.1')
+}
+
 def incVersionCore(buildOrMinor, clearBuild) {
     // loading the module's gradle.properties
     def versionPropsFile = project.file('version.properties')
@@ -64,7 +70,7 @@ def incVersionCore(buildOrMinor, clearBuild) {
         if (project.file('version.properties').createNewFile()) {
             versionPropsFile = project.file('version.properties')
             Integer codeNew = Integer.parseInt(project.VERSION_CODE)
-            if (codeNew == 0) codeNew = 1010100001
+            if (codeNew == 0) codeNew = project.VERSION_CODE
             def nameNew = (codeNew / 1000000000).longValue().toString() + '.' +
                 ((codeNew % 1000000000) / 10000000).longValue().toString() + '.' +
                 ((codeNew % 10000000) / 100000).longValue().toString()
