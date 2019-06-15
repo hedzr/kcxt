@@ -11,11 +11,17 @@ import android.content.Context
 val application: Application?
     get() = _application ?: initAndGetAppCtxWithReflection()
 
+/**
+ * @return the applicationContext of your app
+ */
 @Suppress("unused")
 val appGlobal: Application?
     get() = _application
         ?: initAndGetAppCtxWithReflection()
 
+/**
+ * @return the top of activities, of your app
+ */
 @Suppress("unused")
 val currentActivity: Activity?
     get() = ActivityProvider.currentActivity
