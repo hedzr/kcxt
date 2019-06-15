@@ -1,4 +1,4 @@
-package com.obsez.android.libs.kcxt.demo
+package com.obsez.android.libs.kcxt_demo
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,7 +17,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.obsez.android.libs.kcxt.demo.test", appContext.packageName)
+        assertEquals("com.obsez.android.libs.kcxt_demo", appContext.packageName)
     }
 }
 
