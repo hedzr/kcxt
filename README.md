@@ -16,7 +16,9 @@ import com.obsez.android.libs.kcxt.currentActivity
 
 
 
-#### import `kcxt`
+#### Import `kcxt`
+
+To import `kcxt` in your library (or application):
 
 ```gradle
 dependencies {
