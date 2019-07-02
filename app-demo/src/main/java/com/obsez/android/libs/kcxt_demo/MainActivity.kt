@@ -21,8 +21,14 @@ class MainActivity : AppCompatActivity() {
         
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
+    
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        //     println(appGlobal?.dataDir)
+        // }
+        // println(appGlobal?.cacheDir)
+        // println(currentActivity?.startActivity(intent))
         
         text1.text = "appGlobal = $appGlobal, currentActivity = $currentActivity"
     }

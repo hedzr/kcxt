@@ -7,17 +7,13 @@ import android.content.ContentProvider
 import android.content.Context
 
 
-@Suppress("unused")
-val application: Application?
-    get() = _application ?: initAndGetAppCtxWithReflection()
-
 /**
  * @return the applicationContext of your app
  */
 @Suppress("unused")
 val appGlobal: Application?
     get() = _application
-        ?: initAndGetAppCtxWithReflection()
+        ?: initAndGetAppContextWithReflection()
 
 /**
  * @return the top of activities, of your app
@@ -48,7 +44,7 @@ internal var _application: Application? = null
  * //from https://github.com/LouisCAD/Splitties/tree/master/appctx
  */
 @SuppressLint("PrivateApi")
-private fun initAndGetAppCtxWithReflection(): Application? {
+private fun initAndGetAppContextWithReflection(): Application? {
     // Fallback, should only run once per non default process.
     val activityThread = Class.forName("android.app.ActivityThread")
     val ctx = activityThread.getDeclaredMethod("currentApplication").invoke(null) as? Context

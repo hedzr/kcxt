@@ -9,14 +9,16 @@
             android:authorities="${applicationId}.providers.applicationprovider"
             android:directBootAware="true"
             android:exported="false"
-            android:initOrder="900"
+            android:initOrder="999"
+            android:multiprocess="true"
             tools:ignore="UnusedAttribute"/>
         <provider
             android:name="com.obsez.android.libs.kcxt.LastActivityProvider"
             android:authorities="${applicationId}.providers.lastactivityprovider"
             android:directBootAware="true"
             android:exported="false"
-            android:initOrder="900"
+            android:initOrder="999"
+            android:multiprocess="true"
             tools:ignore="UnusedAttribute"/>
     </application>
 
