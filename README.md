@@ -10,9 +10,15 @@ To use it, just import it from [kcxt at JitPack.io](https://jitpack.io/#hedzr/kc
 ```kotlin
 import com.obsez.android.libs.kcxt.appGlobal
 import com.obsez.android.libs.kcxt.currentActivity
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+	println(appGlobal?.dataDir)
+}
+println(appGlobal?.cacheDir)
+println(currentActivity?.startActivity(intent))
 ```
 
->`kcxt` need AndroidX and `ActivityLifecycle` supports.
+> `kcxt` need AndroidX and `ActivityLifecycle` supports.
 
 
 
