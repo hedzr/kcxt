@@ -58,7 +58,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compileOnly 'androidx.appcompat:appcompat:1.0.2'
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -68,7 +68,7 @@ dependencies {
     // To check the latest versions, goto:
     // https://developer.android.com/kotlin/ktx
     // https://developer.android.com/jetpack/androidx/releases/core
-    compileOnly "androidx.core:core-ktx:1.0.2"
+    compileOnly "androidx.core:core-ktx:1.1.0"
     //
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
