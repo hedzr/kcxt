@@ -54,7 +54,7 @@ internal abstract class ProviderInitializer : ContentProvider() {
 }
 
 
-internal abstract class EmptyProvider : ContentProvider() {
+abstract class EmptyProvider : ContentProvider() {
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -78,7 +78,7 @@ internal abstract class EmptyProvider : ContentProvider() {
 
 
 @Suppress("unused")
-internal object ApplicationProvider {
+object ApplicationProvider {
     internal val applicationListeners = ConcurrentLinkedQueue<(Application) -> Unit>()
     
     @JvmStatic
@@ -98,7 +98,7 @@ internal object ApplicationProvider {
         }
 }
 
-internal class AppContextProvider : EmptyProvider() {
+class AppContextProvider : EmptyProvider() {
     override fun onCreate(): Boolean {
         val ctx = context
         if (ctx is Application) {
