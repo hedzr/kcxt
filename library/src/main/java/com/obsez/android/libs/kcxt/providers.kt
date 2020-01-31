@@ -109,24 +109,24 @@ internal class AppContextProvider : EmptyProvider() {
 }
 
 
-internal interface ActivityCreatedListener {
+interface ActivityCreatedListener {
     fun onActivityCreated(activity: Activity)
 }
 
-internal interface ActivityResumedListener {
+interface ActivityResumedListener {
     fun onActivityResumed(activity: Activity)
 }
 
-internal interface ActivityPausedListener {
+interface ActivityPausedListener {
     fun onActivityPaused(activity: Activity)
 }
 
-internal interface ActivityDestroyedListener {
+interface ActivityDestroyedListener {
     fun onActivityDestroyed(activity: Activity)
 }
 
 @Suppress("ObjectPropertyName", "MemberVisibilityCanBePrivate", "unused")
-internal object ActivityProvider {
+object ActivityProvider {
     private val activityCreatedListeners = ConcurrentLinkedQueue<ActivityCreatedListener>()
     private val activityResumedListeners = ConcurrentLinkedQueue<ActivityResumedListener>()
     private val activityPausedListeners = ConcurrentLinkedQueue<ActivityPausedListener>()
