@@ -172,27 +172,27 @@ object ActivityProvider {
         activityDestroyedListeners.remove(listener)
     }
     
-    internal fun pingResumedListeners(activity: Activity) {
+    fun pingResumedListeners(activity: Activity) {
         _currentActivity = WeakReference(activity)
         activityResumedListeners.forEach {
             it.onActivityResumed(activity)
         }
     }
     
-    internal fun pingPausedListeners(activity: Activity) {
+    fun pingPausedListeners(activity: Activity) {
         activityPausedListeners.forEach {
             it.onActivityPaused(activity)
         }
     }
     
-    internal fun pingCreatedListeners(activity: Activity) {
+    fun pingCreatedListeners(activity: Activity) {
         _currentActivity = WeakReference(activity)
         activityCreatedListeners.forEach {
             it.onActivityCreated(activity)
         }
     }
     
-    internal fun pingDestroyedListeners(activity: Activity) {
+    fun pingDestroyedListeners(activity: Activity) {
         activityDestroyedListeners.forEach {
             it.onActivityDestroyed(activity)
         }
